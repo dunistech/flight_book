@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Flight</title>
+</head>
+<body>
+    <h2>Edit Flight</h2>
+    <form action="{% url 'edit_flight' flight.id %}" method="post">
+        {% csrf_token %}
+        <label for="origin">Origin:</label><br>
+        <input type="text" id="origin" name="origin" value="{{ flight.origin }}"><br><br>
+        <label for="destination">Destination:</label><br>
+        <input type="text" id="destination" name="destination" value="{{ flight.destination }}"><br><br>
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="text" id="duration" name="duration" value="{{ flight.duration }}"><br><br>
+        <input type="submit" value="Update Flight">
+    </form>
+</body>
+</html>

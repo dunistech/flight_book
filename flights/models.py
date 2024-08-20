@@ -1,6 +1,10 @@
 from django.db import models
 
 # Create your models here.
+<<<<<<< HEAD
+=======
+
+>>>>>>> a088a718e49860a2197ecc7099435903a4ad93ec
 class Airport(models.Model):
     code = models.CharField(max_length=3)
     city = models.CharField(max_length=64)

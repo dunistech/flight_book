@@ -2,3 +2,4 @@
 __pychache__
 migrations/
 __pycache__/
+db.sqlite3

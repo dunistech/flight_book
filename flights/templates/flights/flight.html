@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ flight }}</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">{{ flight }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> {{ flight.duration }} minutes</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Passengers</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for passenger in passengers %}
+                                <li class="list-group-item">{{ passenger }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add a Passenger</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'book' flight.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="passenger">Select Passenger</label>
+                                <select name="passenger" id="passenger" class="form-control">
+                                    {% for passenger in non_passengers %}
+                                        <option value="{{ passenger.id }}">{{ passenger }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Back to all flights</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

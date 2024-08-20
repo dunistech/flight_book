@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Flight</title>
+</head>
+<body>
+    <h2>Add a New Flight</h2>
+    <form action="{% url 'add_flight' %}" method="post">
+        {% csrf_token %}
+        <label for="origin">Origin:</label><br>
+        <select id="origin" name="origin">
+            {% for airport in airports %}
+            <option value="{{ airport.code }}">{{ airport.city }} ({{ airport.code }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="destination">Destination:</label><br>
+        <select id="destination" name="destination">
+            {% for airport in airports %}
+            <option value="{{ airport.code }}">{{ airport.city }} ({{ airport.code }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="text" id="duration" name="duration"><br><br>
+
+        <input type="submit" value="Add Flight">
+    </form>
+</body>
+</html>
